@@ -7,7 +7,7 @@
 **Database Schemas**
 --------------------
 
-***Users***
+***Customers***
 * id
 * firstName
 * lastName

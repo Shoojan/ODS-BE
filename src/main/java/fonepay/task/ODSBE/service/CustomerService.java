@@ -23,6 +23,14 @@ public record CustomerService(CustomerRepository customerRepository) {
         else throw new ApiRequestException("Customer not valid!");
     }
 
+    public Customer findCustomerByEmail(String email) {
+        Customer customer = customerRepository.findByEmail(email)
+                .orElseThrow(() -> new ApiRequestException("Customer of email `" + email + "` was not found!"));
+        if (customer.getDeletedAt() == null)
+            return customer;
+        else throw new ApiRequestException("Customer not valid!");
+    }
+
     public Customer addCustomer(Customer customer) {
         customer.setCreatedAt(LocalDate.now());
         return customerRepository.save(customer);

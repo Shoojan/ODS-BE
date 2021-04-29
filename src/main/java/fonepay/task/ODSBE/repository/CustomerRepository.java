@@ -6,10 +6,12 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     List<Customer> findAllByDeletedAt(LocalDate deletedAt);
 
+    Optional<Customer> findByEmail(String email);
 }

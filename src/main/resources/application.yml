@@ -31,3 +31,8 @@ app:
     contact-email: sujan.mhrzn2@gmail.com
     swagger:
       enable: true
+
+  jwt:
+    secretKey: This_is_a_very_secure_and_long_key_so_that_nobody_gets_through_my_system
+    tokenPrefix: Bearer
+    tokenExpirationAfterDays: 14

@@ -17,9 +17,9 @@ public class StaticDataConfig {
     CommandLineRunner commandLineRunner(CustomerRepository userRepository, ProductRepository productRepository) {
         return args -> {
             userRepository.saveAll(List.of(
-                    new Customer("Sujan", "Maharjan", "sujan@gmail.com", "9860059666", "Chandragiri-10, Kathmandu"),
-                    new Customer("Sonam", "Neupane", "sonam@gmail.com", "9860123456", "Chandragiri-5, Kathmandu"),
-                    new Customer("Jenisha", "Adhikari", "jenisha@gmail.com", "9860059111", "Bhaktapur")
+                    new Customer("Sujan", "Maharjan", "sujan@gmail.com", "sujan123", "9860059666", "Chandragiri-10, Kathmandu"),
+                    new Customer("Sonam", "Neupane", "sonam@gmail.com", "sonam456", "9860123456", "Chandragiri-5, Kathmandu"),
+                    new Customer("Jenisha", "Adhikari", "jenisha@gmail.com", "jeni789", "9860059111", "Bhaktapur")
             ));
 
             productRepository.saveAll(List.of(
