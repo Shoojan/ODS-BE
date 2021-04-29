@@ -9,12 +9,12 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-@Entity(name = "users")
-public class User {
+@Entity(name = "customers")
+public class Customer {
 
     @Id
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "customer_sequence", sequenceName = "customer_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_sequence")
     private long id;
 
     private String firstName;
@@ -27,7 +27,7 @@ public class User {
     private LocalDate updatedAt;
     private LocalDate deletedAt;
 
-    public User(String firstName, String lastName, String email, String mobile, String address) {
+    public Customer(String firstName, String lastName, String email, String mobile, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

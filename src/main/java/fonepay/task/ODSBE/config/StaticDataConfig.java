@@ -1,9 +1,9 @@
 package fonepay.task.ODSBE.config;
 
 import fonepay.task.ODSBE.model.Product;
-import fonepay.task.ODSBE.model.User;
+import fonepay.task.ODSBE.model.Customer;
 import fonepay.task.ODSBE.repository.ProductRepository;
-import fonepay.task.ODSBE.repository.UserRepository;
+import fonepay.task.ODSBE.repository.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +14,12 @@ import java.util.List;
 public class StaticDataConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(UserRepository userRepository, ProductRepository productRepository) {
+    CommandLineRunner commandLineRunner(CustomerRepository userRepository, ProductRepository productRepository) {
         return args -> {
             userRepository.saveAll(List.of(
-                    new User("Sujan", "Maharjan", "sujan@gmail.com", "9860059666", "Chandragiri-10, Kathmandu"),
-                    new User("Sonam", "Neupane", "sonam@gmail.com", "9860123456", "Chandragiri-5, Kathmandu"),
-                    new User("Jenisha", "Adhikari", "jenisha@gmail.com", "9860059111", "Bhaktapur")
+                    new Customer("Sujan", "Maharjan", "sujan@gmail.com", "9860059666", "Chandragiri-10, Kathmandu"),
+                    new Customer("Sonam", "Neupane", "sonam@gmail.com", "9860123456", "Chandragiri-5, Kathmandu"),
+                    new Customer("Jenisha", "Adhikari", "jenisha@gmail.com", "9860059111", "Bhaktapur")
             ));
 
             productRepository.saveAll(List.of(

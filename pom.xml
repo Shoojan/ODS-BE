@@ -16,6 +16,8 @@
     <properties>
         <java.version>16</java.version>
         <swagger2.version>3.0.0</swagger2.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <json.version>20210307</json.version>
     </properties>
     <dependencies>
         <dependency>
@@ -27,11 +29,14 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--H2 Database Engine-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!--Automatic Resource Management, automatic generation of getters, setters, equals, hashCode and toString, and more!-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -43,6 +48,26 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>${swagger2.version}</version>
+        </dependency>
+
+        <!--Security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!--JWT-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+
+        <!-- a light-weight, language independent, data interchange format. Includes the capability to convert between JSON and XML, HTTP headers, Cookies, and CDL. -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
         </dependency>
 
         <dependency>

@@ -18,7 +18,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_sequence")
     private long id;
 
-    private long userId;
+    private long customerId;
 
     //    private long productId;
     @JsonIgnore
