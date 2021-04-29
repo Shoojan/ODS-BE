@@ -29,6 +29,7 @@ public class Product {
         this.description = description;
         this.price = price;
         this.imagePath = imagePath;
+        this.createdAt = LocalDate.now();
     }
 
 }

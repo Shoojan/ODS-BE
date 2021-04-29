@@ -32,5 +32,6 @@ public class User {
         this.email = email;
         this.mobile = mobile;
         this.address = address;
+        this.createdAt = LocalDate.now();
     }
 }
