@@ -2,11 +2,13 @@ package fonepay.task.ODSBE.model;
 
 import fonepay.task.ODSBE.enums.OrderStatus;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
 @Entity(name = "orders")
 public class Order {
 

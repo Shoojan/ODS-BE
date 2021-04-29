@@ -1,11 +1,13 @@
 package fonepay.task.ODSBE.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
 @Entity(name = "products")
 public class Product {
 
