@@ -6,13 +6,12 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
-@Entity
+@Entity(name = "products")
 public class Product {
 
     @Id
     @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
-    @Column(nullable = false, updatable = false)
     private long id;
 
     private String productName;

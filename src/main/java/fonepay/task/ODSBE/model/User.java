@@ -7,13 +7,12 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
-@Entity
+@Entity(name = "users")
 public class User {
 
     @Id
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    @Column(nullable = false, updatable = false)
     private long id;
 
     private String firstName;

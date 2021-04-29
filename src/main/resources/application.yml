@@ -3,7 +3,9 @@ spring:
     name: Online_Delivery_System_BE
 
   datasource:
-    url: jdbc:h2:~/ods
+    url: jdbc:h2:tcp://localhost/~/ods
+#    //Embedded H2 Server
+#    url: jdbc:h2:~/ods
     username: sa
     password:
 
