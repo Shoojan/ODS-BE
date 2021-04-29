@@ -4,7 +4,7 @@
 >A Backend REST API service for simple Online Delivery System using Java with SpringBoot framework
 
 
-**Database Designs**
+**Database Schemas**
 --------------------
 
 ***Users***
