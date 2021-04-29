@@ -6,6 +6,7 @@ import fonepay.task.ODSBE.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,24 +19,32 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product addProduct(Product product) {
-        return productRepository.save(product);
-    }
 
     public List<Product> findAllProducts() {
-        return productRepository.findAll();
-    }
-
-    public Product updateProduct(Product Product) {
-        return productRepository.save(Product);
+        return productRepository.findAllByDeletedAt(null);
     }
 
     public Product findProductById(long id) {
-        return productRepository.findById(id)
+        Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ApiRequestException("Product of id " + id + " was not found!"));
+        if (product.getDeletedAt() == null)
+            return product;
+        else throw new ApiRequestException("Product not valid!");
+    }
+
+    public Product addProduct(Product product) {
+        product.setCreatedAt(LocalDate.now());
+        return productRepository.save(product);
+    }
+
+    public Product updateProduct(Product product) {
+        product.setUpdatedAt(LocalDate.now());
+        return productRepository.save(product);
     }
 
     public void deleteProduct(long id) {
-        productRepository.deleteById(id);
+        Product product = findProductById(id);
+        product.setDeletedAt(LocalDate.now());
+        productRepository.save(product);
     }
 }

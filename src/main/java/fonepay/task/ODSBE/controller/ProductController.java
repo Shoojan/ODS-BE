@@ -33,14 +33,14 @@ public class ProductController implements CrudController<Product> {
     }
 
     @PostMapping
-    public ResponseEntity<Product> addData(@RequestBody Product Product) {
-        Product newProduct = productService.addProduct(Product);
+    public ResponseEntity<Product> addData(@RequestBody Product product) {
+        Product newProduct = productService.addProduct(product);
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Product> updateData(@RequestBody Product Product) {
-        Product updatedProduct = productService.updateProduct(Product);
+    public ResponseEntity<Product> updateData(@RequestBody Product product) {
+        Product updatedProduct = productService.updateProduct(product);
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 
