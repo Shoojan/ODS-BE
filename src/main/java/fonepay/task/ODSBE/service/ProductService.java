@@ -3,22 +3,13 @@ package fonepay.task.ODSBE.service;
 import fonepay.task.ODSBE.exception.ApiRequestException;
 import fonepay.task.ODSBE.model.Product;
 import fonepay.task.ODSBE.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class ProductService {
-
-    private final ProductRepository productRepository;
-
-    @Autowired
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
+public record ProductService(ProductRepository productRepository) {
 
     public List<Product> findAllProducts() {
         return productRepository.findAllByDeletedAt(null);

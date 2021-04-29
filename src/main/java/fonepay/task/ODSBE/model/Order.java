@@ -1,5 +1,6 @@
 package fonepay.task.ODSBE.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fonepay.task.ODSBE.enums.OrderStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,12 +19,18 @@ public class Order {
     private long id;
 
     private long userId;
-    private long productId;
+
+    //    private long productId;
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productId")
+    private Product product;
 
     private int quantity;
     private double unitPrice;
     private double totalPrice;
 
+    @Column(updatable = false, insertable = false)
     private LocalDate orderedAt;
 
     private OrderStatus orderStatus;
