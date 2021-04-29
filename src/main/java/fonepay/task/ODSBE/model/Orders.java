@@ -8,11 +8,12 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class Order {
+public class Orders {
 
     @Id
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @SequenceGenerator(name = "order_sequence", sequenceName = "order_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_sequence")
+    @Column(nullable = false, updatable = false)
     private long id;
 
     private long userId;
