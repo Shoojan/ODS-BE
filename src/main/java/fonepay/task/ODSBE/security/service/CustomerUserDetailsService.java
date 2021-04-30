@@ -1,7 +1,7 @@
 package fonepay.task.ODSBE.security.service;
 
 import fonepay.task.ODSBE.security.model.UserSecurity;
-import fonepay.task.ODSBE.service.CustomerService;
+import fonepay.task.ODSBE.service.customer_service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,7 +30,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserById(long id) {
         try {
-            return new UserSecurity(customerService.findCustomerById(id));
+            return new UserSecurity(customerService.findDataById(id));
         } catch (Exception e) {
             throw new UsernameNotFoundException("User not found with id : " + id);
         }

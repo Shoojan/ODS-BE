@@ -1,4 +1,4 @@
-package fonepay.task.ODSBE.service;
+package fonepay.task.ODSBE.service.customer_service;
 
 import fonepay.task.ODSBE.exception.ApiRequestException;
 import fonepay.task.ODSBE.model.Customer;
@@ -9,13 +9,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public record CustomerService(CustomerRepository customerRepository) {
+public record CustomerServiceImpl(CustomerRepository customerRepository) implements CustomerService {
 
-    public List<Customer> findAllCustomers() {
+    public List<Customer> findAllData() {
         return customerRepository.findAllByDeletedAt(null);
     }
 
-    public Customer findCustomerById(long id) {
+    public Customer findDataById(long id) {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new ApiRequestException("Customer of id " + id + " was not found!"));
         if (customer.getDeletedAt() == null)
@@ -31,18 +31,18 @@ public record CustomerService(CustomerRepository customerRepository) {
         else throw new ApiRequestException("Customer not valid!");
     }
 
-    public Customer addCustomer(Customer customer) {
+    public Customer addData(Customer customer) {
         customer.setCreatedAt(LocalDate.now());
         return customerRepository.save(customer);
     }
 
-    public Customer updateCustomer(Customer customer) {
+    public Customer updateData(Customer customer) {
         customer.setUpdatedAt(LocalDate.now());
         return customerRepository.save(customer);
     }
 
-    public void deleteCustomer(long id) {
-        Customer customer = findCustomerById(id);
+    public void deleteData(long id) {
+        Customer customer = findDataById(id);
         customer.setDeletedAt(LocalDate.now());
         customerRepository.save(customer);
     }
