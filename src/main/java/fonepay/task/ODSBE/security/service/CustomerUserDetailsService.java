@@ -1,5 +1,6 @@
-package fonepay.task.ODSBE.security;
+package fonepay.task.ODSBE.security.service;
 
+import fonepay.task.ODSBE.security.model.UserSecurity;
 import fonepay.task.ODSBE.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

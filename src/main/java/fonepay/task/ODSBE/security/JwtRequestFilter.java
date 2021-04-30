@@ -1,5 +1,6 @@
 package fonepay.task.ODSBE.security;
 
+import fonepay.task.ODSBE.security.service.CustomerUserDetailsService;
 import io.jsonwebtoken.*;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     private final CustomerUserDetailsService userDetailsService;
     private final JwtTokenProvider jwtTokenProvider;
-    private final JwtConfig jwtConfig;
+    private final JwtConfigReader jwtConfig;
 
 
     @Autowired
-    public JwtRequestFilter(CustomerUserDetailsService userDetailsService, JwtTokenProvider jwtTokenProvider, JwtConfig jwtConfig) {
+    public JwtRequestFilter(CustomerUserDetailsService userDetailsService, JwtTokenProvider jwtTokenProvider, JwtConfigReader jwtConfig) {
         this.userDetailsService = userDetailsService;
         this.jwtTokenProvider = jwtTokenProvider;
         this.jwtConfig = jwtConfig;

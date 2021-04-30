@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "app.jwt")
 @Data
 @NoArgsConstructor
-public class JwtConfig {
+public class JwtConfigReader {
 
     private String secretKey;
     private String tokenPrefix;

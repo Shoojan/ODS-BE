@@ -4,22 +4,31 @@ import fonepay.task.ODSBE.model.Product;
 import fonepay.task.ODSBE.model.Customer;
 import fonepay.task.ODSBE.repository.ProductRepository;
 import fonepay.task.ODSBE.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
 @Configuration
 public class StaticDataConfig {
 
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public StaticDataConfig(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository userRepository, ProductRepository productRepository) {
         return args -> {
             userRepository.saveAll(List.of(
-                    new Customer("Sujan", "Maharjan", "sujan@gmail.com", "sujan123", "9860059666", "Chandragiri-10, Kathmandu"),
-                    new Customer("Sonam", "Neupane", "sonam@gmail.com", "sonam456", "9860123456", "Chandragiri-5, Kathmandu"),
-                    new Customer("Jenisha", "Adhikari", "jenisha@gmail.com", "jeni789", "9860059111", "Bhaktapur")
+                    new Customer("Sujan", "Maharjan", "sujan@gmail.com", passwordEncoder.encode("sujan123"), "9860059666", "Chandragiri-10, Kathmandu"),
+                    new Customer("Sonam", "Neupane", "sonam@gmail.com", passwordEncoder.encode("sonam456"), "9860123456", "Chandragiri-5, Kathmandu"),
+                    new Customer("Jenisha", "Adhikari", "jenisha@gmail.com", passwordEncoder.encode("jeni789"), "9860059111", "Bhaktapur")
             ));
 
             productRepository.saveAll(List.of(

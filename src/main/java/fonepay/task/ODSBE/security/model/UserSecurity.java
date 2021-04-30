@@ -1,4 +1,4 @@
-package fonepay.task.ODSBE.security;
+package fonepay.task.ODSBE.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import fonepay.task.ODSBE.model.Customer;
@@ -24,7 +24,7 @@ public class UserSecurity implements UserDetails {
     public UserSecurity(Customer customer) {
         this.setId(customer.getId());
         this.setEmail(customer.getEmail());
-        this.setEmail(customer.getPassword());
+        this.setPassword(customer.getPassword());
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserSecurity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
 
     @Override

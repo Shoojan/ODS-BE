@@ -1,5 +1,6 @@
 package fonepay.task.ODSBE.security;
 
+import fonepay.task.ODSBE.security.model.UserSecurity;
 import io.jsonwebtoken.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +12,7 @@ import java.util.Date;
 import java.util.function.Function;
 
 @Component
-public record JwtTokenProvider(JwtConfig jwtConfig) {
+public record JwtTokenProvider(JwtConfigReader jwtConfigReader) {
 
     //retrieve expiration date from jwt token
     public Date getExpirationDateFromToken(String token) {
@@ -25,7 +26,7 @@ public record JwtTokenProvider(JwtConfig jwtConfig) {
 
     //for retrieving any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(jwtConfig.getSecretKey()).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(jwtConfigReader.getSecretKey()).parseClaimsJws(token).getBody();
     }
 
     //check if the token has expired
@@ -52,10 +53,10 @@ public record JwtTokenProvider(JwtConfig jwtConfig) {
         UserSecurity userPrincipal = (UserSecurity) authentication.getPrincipal();
 
         return Jwts.builder()
-                .setSubject(Long.toString(userPrincipal.getId()))
+                .setSubject(userPrincipal.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(jwtConfig.getTokenExpirationAfterDays())))
-                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecretKey())
+                .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(jwtConfigReader.getTokenExpirationAfterDays())))
+                .signWith(SignatureAlgorithm.HS512, jwtConfigReader.getSecretKey())
                 .compact();
     }
 
