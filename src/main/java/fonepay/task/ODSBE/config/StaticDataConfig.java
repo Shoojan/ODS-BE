@@ -26,9 +26,9 @@ public class StaticDataConfig {
     CommandLineRunner commandLineRunner(CustomerRepository userRepository, ProductRepository productRepository) {
         return args -> {
             userRepository.saveAll(List.of(
-                    new Customer("Sujan", "Maharjan", "sujan@gmail.com", passwordEncoder.encode("sujan123"), "9860059666", "Chandragiri-10, Kathmandu"),
-                    new Customer("Sonam", "Neupane", "sonam@gmail.com", passwordEncoder.encode("sonam456"), "9860123456", "Chandragiri-5, Kathmandu"),
-                    new Customer("Jenisha", "Adhikari", "jenisha@gmail.com", passwordEncoder.encode("jeni789"), "9860059111", "Bhaktapur")
+                    new Customer("Customer", "A", "a@gmail.com", passwordEncoder.encode("a123"), "98xxxxxxxx", "Chandragiri-10, Kathmandu"),
+                    new Customer("Customer", "B", "b@gmail.com", passwordEncoder.encode("b123"), "98yyyyyyyy", "Chandragiri-5, Kathmandu"),
+                    new Customer("Customer", "C", "c@gmail.com", passwordEncoder.encode("c123"), "98zzzzzzzz", "Bhaktapur")
             ));
 
             productRepository.saveAll(List.of(

@@ -1,4 +1,18 @@
-package fonepay.task.ODSBE.service;
+package fonepay.task.ODSBE.service.order_service;
 
+import fonepay.task.ODSBE.model.Order;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
 public interface OrderToCartService {
+    //Add to Cart
+    Order addToCart(long customerId, long productId, int qty);
+
+    List<Order> getCartOrders(long userId);
+
+    void removeCartOrder(long orderId);
+
+    //Checkout
 }

@@ -1,2 +1,43 @@
-package fonepay.task.ODSBE.service.order_service;public class OrderToCartServiceImpl {
+package fonepay.task.ODSBE.service.order_service;
+
+import fonepay.task.ODSBE.enums.OrderStatus;
+import fonepay.task.ODSBE.model.Order;
+import fonepay.task.ODSBE.model.Product;
+import fonepay.task.ODSBE.repository.OrderToCartRepository;
+import fonepay.task.ODSBE.service.product_service.ProductService;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@Service
+public record OrderToCartServiceImpl(OrderToCartRepository orderToCartRepository,
+                                     ProductService productService) implements OrderToCartService {
+
+    @Override
+    public Order addToCart(long customerId, long productId, int qty) {
+        Product product = productService.findDataById(productId);
+
+        Order order = new Order();
+        order.setCustomerId(customerId);
+        order.setQuantity(qty);
+        order.setProduct(product);
+        order.setUnitPrice(product.getPrice());
+        order.setTotalPrice(order.getQuantity() * order.getUnitPrice());
+        order.setOrderedAt(LocalDate.now());
+        order.setOrderStatus(OrderStatus.ADDED_TO_CART);
+
+        return orderToCartRepository.save(order);
+    }
+
+    @Override
+    public List<Order> getCartOrders(long customerId) {
+        return orderToCartRepository.findAllByCustomerId(customerId);
+    }
+
+    @Override
+    public void removeCartOrder(long orderId) {
+        orderToCartRepository.deleteById(orderId);
+    }
+
 }

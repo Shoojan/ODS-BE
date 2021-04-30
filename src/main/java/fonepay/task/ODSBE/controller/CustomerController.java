@@ -34,14 +34,14 @@ public class CustomerController implements CrudController<Customer> {
 
     @PostMapping
     public ResponseEntity<Customer> addData(@RequestBody Customer customer) {
-        Customer newcustomer = customerService.addData(customer);
-        return new ResponseEntity<>(newcustomer, HttpStatus.CREATED);
+        Customer newCustomer = customerService.addData(customer);
+        return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity<Customer> updateData(@RequestBody Customer customer) {
-        Customer updatedcustomer = customerService.updateData(customer);
-        return new ResponseEntity<>(updatedcustomer, HttpStatus.OK);
+        Customer updatedCustomer = customerService.updateData(customer);
+        return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
