@@ -1,5 +1,6 @@
 package fonepay.task.ODSBE.controller;
 
+import fonepay.task.ODSBE.model.CheckoutCart;
 import fonepay.task.ODSBE.model.Order;
 import fonepay.task.ODSBE.service.order_service.OrderToCartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,26 @@ public class OrderToCartController {
         return new ResponseEntity<>(cartService.getCartOrders(customerId), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<Order> updateCartOrder(@RequestBody Order order) {
+        return new ResponseEntity<>(cartService.updateCartOrder(order), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteDataById(@PathVariable("id") long orderId) {
         cartService.removeCartOrder(orderId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/checkout")
+    public ResponseEntity<CheckoutCart> checkout(@RequestBody CheckoutCart checkoutCart) {
+        CheckoutCart cart = cartService.makePayment(checkoutCart);
+        return new ResponseEntity<>(cart, HttpStatus.OK);
+    }
+
+    @GetMapping("/checkout")
+    public ResponseEntity<List<CheckoutCart>> checkout(@RequestParam("customerId") long customerId) {
+        return new ResponseEntity<>(cartService.getCheckoutCartOrders(customerId), HttpStatus.OK);
     }
 
 

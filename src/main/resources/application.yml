@@ -3,9 +3,9 @@ spring:
     name: Online_Delivery_System_BE
 
   datasource:
-    url: jdbc:h2:tcp://localhost/~/ods
+#    url: jdbc:h2:tcp://localhost/~/ods
 #    //Embedded H2 Server
-#    url: jdbc:h2:~/ods
+    url: jdbc:h2:~/ods
     username: sa
     password:
 
@@ -19,13 +19,15 @@ spring:
         dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
 
+server:
+  port: 5500
+
 app:
   name: Online Delivery System
   api:
     title: REST API service for Online Delivery System
     version: 1.0.0
     description: Backend REST API service for simple Online Delivery System
-#    base-package: sujan.learns.spring_project.mail_rest_project.controller
     base-package: fonepay.task.ODSBE.controller
     contact-name: Sujan Maharjan
     contact-email: sujan.mhrzn2@gmail.com

@@ -1,5 +1,6 @@
 package fonepay.task.ODSBE.service.order_service;
 
+import fonepay.task.ODSBE.model.CheckoutCart;
 import fonepay.task.ODSBE.model.Order;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,12 @@ public interface OrderToCartService {
 
     List<Order> getCartOrders(long userId);
 
+    Order updateCartOrder(Order order);
+
     void removeCartOrder(long orderId);
 
     //Checkout
+    CheckoutCart makePayment(CheckoutCart checkoutCart);
+
+    List<CheckoutCart> getCheckoutCartOrders(long customerId);
 }
