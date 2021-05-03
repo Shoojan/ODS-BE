@@ -12,7 +12,7 @@ public interface OrderToCartService {
     //Add to Cart
     Order addToCart(long customerId, long productId, int qty);
 
-    List<Order> getCartOrders(long customerId, OrderStatus orderStatus);
+    List<Order> getCartOrders(long customerId, boolean isActive);
 
     Order updateCartOrder(Order order);
 

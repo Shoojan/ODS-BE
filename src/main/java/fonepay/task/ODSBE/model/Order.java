@@ -20,7 +20,7 @@ public class Order {
 
     private long customerId;
 
-//    @JsonIgnore
+    //    @JsonIgnore
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productId")
     private Product product;
@@ -30,6 +30,11 @@ public class Order {
     private double totalPrice;
 
     private LocalDate orderedAt;
+
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
+    private LocalDate deletedAt;
 }

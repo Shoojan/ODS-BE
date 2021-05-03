@@ -31,8 +31,9 @@ public class OrderToCartController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Order>> getCartOrdersOfUser(@RequestParam("customerId") long customerId) {
-        return new ResponseEntity<>(cartService.getCartOrders(customerId, OrderStatus.ADDED_TO_CART), HttpStatus.OK);
+    public ResponseEntity<List<Order>> getCartOrdersOfUser(@RequestParam("customerId") long customerId,
+                                                           @RequestParam("isActive") boolean isActive) {
+        return new ResponseEntity<>(cartService.getCartOrders(customerId, isActive), HttpStatus.OK);
     }
 
     @PutMapping

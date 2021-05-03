@@ -25,12 +25,14 @@ public class CheckoutCart {
     @JoinColumn(name = "checkoutCartId")
     private List<Order> orders;
 
+    @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
 
     private String deliveryAddress;
 
-    private long totalCost;
+    private long totalPayment;
 
     private LocalDate orderDate;
+    private LocalDate expectedDate;
 
 }
