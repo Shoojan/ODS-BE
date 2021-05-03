@@ -18,11 +18,10 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_sequence")
     private long id;
 
-    private long userId;
+    private long customerId;
 
-    //    private long productId;
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "productId")
     private Product product;
 
@@ -30,9 +29,7 @@ public class Order {
     private double unitPrice;
     private double totalPrice;
 
-    @Column(updatable = false, insertable = false)
     private LocalDate orderedAt;
-
     private OrderStatus orderStatus;
 
 }

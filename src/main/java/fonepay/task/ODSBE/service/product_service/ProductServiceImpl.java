@@ -1,4 +1,4 @@
-package fonepay.task.ODSBE.service;
+package fonepay.task.ODSBE.service.product_service;
 
 import fonepay.task.ODSBE.exception.ApiRequestException;
 import fonepay.task.ODSBE.model.Product;
@@ -9,13 +9,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public record ProductService(ProductRepository productRepository) {
+public record ProductServiceImpl(ProductRepository productRepository) implements ProductService {
 
-    public List<Product> findAllProducts() {
+    public List<Product> findAllData() {
         return productRepository.findAllByDeletedAt(null);
     }
 
-    public Product findProductById(long id) {
+    public Product findDataById(long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ApiRequestException("Product of id " + id + " was not found!"));
         if (product.getDeletedAt() == null)
@@ -23,18 +23,18 @@ public record ProductService(ProductRepository productRepository) {
         else throw new ApiRequestException("Product not valid!");
     }
 
-    public Product addProduct(Product product) {
+    public Product addData(Product product) {
         product.setCreatedAt(LocalDate.now());
         return productRepository.save(product);
     }
 
-    public Product updateProduct(Product product) {
+    public Product updateData(Product product) {
         product.setUpdatedAt(LocalDate.now());
         return productRepository.save(product);
     }
 
-    public void deleteProduct(long id) {
-        Product product = findProductById(id);
+    public void deleteData(long id) {
+        Product product = findDataById(id);
         product.setDeletedAt(LocalDate.now());
         productRepository.save(product);
     }
