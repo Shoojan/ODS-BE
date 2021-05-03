@@ -37,3 +37,12 @@
 * totalPrice
 * orderedAt
 * status
+* checkoutCartId
+
+***CheckoutCart***
+* id
+* customerId
+* paymentType
+* deliveryAddress
+* totalPayment
+* orderDate
