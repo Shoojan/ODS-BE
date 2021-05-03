@@ -28,15 +28,14 @@ public record OrderToCartServiceImpl(OrderToCartRepository orderToCartRepository
         order.setProduct(product);
         order.setUnitPrice(product.getPrice());
         order.setTotalPrice(order.getQuantity() * order.getUnitPrice());
-        order.setOrderedAt(LocalDate.now());
         order.setOrderStatus(OrderStatus.ADDED_TO_CART);
 
         return orderToCartRepository.save(order);
     }
 
     @Override
-    public List<Order> getCartOrders(long customerId) {
-        return orderToCartRepository.findAllByCustomerId(customerId);
+    public List<Order> getCartOrders(long customerId, OrderStatus orderStatus) {
+        return orderToCartRepository.findAllByCustomerIdAndOrderStatus(customerId, orderStatus);
     }
 
     @Override
@@ -53,6 +52,13 @@ public record OrderToCartServiceImpl(OrderToCartRepository orderToCartRepository
     public CheckoutCart makePayment(CheckoutCart checkoutCart) {
         checkoutCart.setOrderDate(LocalDate.now());
         checkoutCart.setPaymentType(PaymentType.VISA_CARD_PAYMENT);
+
+        //Change the Status
+        checkoutCart.getOrders().forEach(order -> {
+            order.setOrderStatus(OrderStatus.ORDER_PLACED);
+            order.setOrderedAt(LocalDate.now());
+            orderToCartRepository.save(order);
+        });
         return cartRepository.save(checkoutCart);
     }
 

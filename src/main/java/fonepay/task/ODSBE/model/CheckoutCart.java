@@ -22,7 +22,7 @@ public class CheckoutCart {
     long customerId;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "orderId")
+    @JoinColumn(name = "checkoutCartId")
     private List<Order> orders;
 
     private PaymentType paymentType;

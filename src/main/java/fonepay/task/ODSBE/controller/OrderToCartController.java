@@ -1,5 +1,6 @@
 package fonepay.task.ODSBE.controller;
 
+import fonepay.task.ODSBE.enums.OrderStatus;
 import fonepay.task.ODSBE.model.CheckoutCart;
 import fonepay.task.ODSBE.model.Order;
 import fonepay.task.ODSBE.service.order_service.OrderToCartService;
@@ -31,7 +32,7 @@ public class OrderToCartController {
 
     @GetMapping
     public ResponseEntity<List<Order>> getCartOrdersOfUser(@RequestParam("customerId") long customerId) {
-        return new ResponseEntity<>(cartService.getCartOrders(customerId), HttpStatus.OK);
+        return new ResponseEntity<>(cartService.getCartOrders(customerId, OrderStatus.ADDED_TO_CART), HttpStatus.OK);
     }
 
     @PutMapping

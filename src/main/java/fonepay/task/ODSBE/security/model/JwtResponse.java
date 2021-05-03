@@ -11,4 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class JwtResponse implements Serializable {
     String jwtToken;
+
+    ProfileDetail profileDetail;
+
 }

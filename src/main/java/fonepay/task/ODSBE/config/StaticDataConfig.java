@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Configuration
 public class StaticDataConfig {
@@ -41,29 +42,28 @@ public class StaticDataConfig {
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository userRepository, ProductRepository productRepository, OrderToCartRepository cartRepository) {
         return args -> {
-            userRepository.saveAll(List.of(
+            List<Customer> customers = List.of(
                     new Customer("Customer", "A", "a@gmail.com", passwordEncoder.encode("a123"), "98xxxxxxxx", "Chandragiri-10, Kathmandu"),
                     new Customer("Customer", "B", "b@gmail.com", passwordEncoder.encode("b123"), "98yyyyyyyy", "Chandragiri-5, Kathmandu"),
                     new Customer("Customer", "C", "c@gmail.com", passwordEncoder.encode("c123"), "98zzzzzzzz", "Bhaktapur")
-            ));
+            );
+            List<Customer> savedCustomers = userRepository.saveAll(customers);
 
-            productRepository.saveAll(products);
+            List<Product> saveProducts = productRepository.saveAll(products);
 
-            cartRepository.saveAll(List.of(
-                    getOrder(0),
-                    getOrder(1),
-                    getOrder(2),
-                    getOrder(3)
-            ));
+            savedCustomers.forEach(customer -> cartRepository.saveAll(
+                    saveProducts.stream()
+                            .map(p -> getOrder(p, customer.getId()))
+                            .collect(Collectors.toList()))
+            );
 
         };
     }
 
-    private Order getOrder(int productId) {
-        Product product = products.get(productId);
+    private Order getOrder(Product product, long customerId) {
         Order order = new Order();
-        order.setCustomerId(1);
-        order.setQuantity(getRandomNumber(productId + 1, productId + (10 - productId)));
+        order.setCustomerId(customerId);
+        order.setQuantity(getRandomNumber((int) product.getId(), 10));
         order.setProduct(product);
         order.setUnitPrice(product.getPrice());
         order.setTotalPrice(order.getQuantity() * order.getUnitPrice());

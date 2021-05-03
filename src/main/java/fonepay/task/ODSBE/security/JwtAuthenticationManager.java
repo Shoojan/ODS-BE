@@ -14,16 +14,16 @@ public class JwtAuthenticationManager {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
-//    private final CustomerUserDetailsService userDetailsService;
 
     @Autowired
-    public JwtAuthenticationManager(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
+    public JwtAuthenticationManager(AuthenticationManager authenticationManager,
+                                    JwtTokenProvider jwtTokenProvider) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
     public String createAuthenticationToken(JwtRequest authenticationRequest) throws Exception {
-//            final CustomerUserDetailsService userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+//        final Customer customer = customerService.findCustomerByEmail(authenticationRequest.getEmail());
         return jwtTokenProvider.generateToken(authenticate(authenticationRequest));
     }
 

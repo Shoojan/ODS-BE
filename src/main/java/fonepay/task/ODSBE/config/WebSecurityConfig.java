@@ -35,7 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/v3/api-docs/**",
             "/swagger-ui/**",
             // other public endpoints of your API may be appended to this array
-            "/api/v1/authenticate", "/api/v1/status", "/api/v1/orders/**",
+            "/api/v1/authenticate", "/api/v1/status",
+//            "/api/v1/orders/**",
             "/favicon.ico",
             "/**/*.png",
             "/**/*.gif",
