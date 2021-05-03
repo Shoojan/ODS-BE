@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 @Configuration
@@ -45,9 +44,9 @@ public class StaticDataConfig {
     CommandLineRunner commandLineRunner(CustomerRepository userRepository, ProductRepository productRepository, OrderToCartRepository cartRepository) {
         return args -> {
             List<Customer> customers = List.of(
-                    new Customer("Customer", "A", "a@gmail.com", passwordEncoder.encode("a123"), "98xxxxxxxx", "Chandragiri-10, Kathmandu"),
-                    new Customer("Customer", "B", "b@gmail.com", passwordEncoder.encode("b123"), "98yyyyyyyy", "Chandragiri-5, Kathmandu"),
-                    new Customer("Customer", "C", "c@gmail.com", passwordEncoder.encode("c123"), "98zzzzzzzz", "Bhaktapur")
+                    new Customer("Sujan", "Maharjan", "sujan@gmail.com", passwordEncoder.encode("123"), "98xxxxxxxx", "Chandragiri-10, Kathmandu"),
+                    new Customer("Diwas", "Sapkota", "diwas@gmail.com", passwordEncoder.encode("123"), "98yyyyyyyy", "Chandragiri-5, Kathmandu"),
+                    new Customer("Ankita", "Shrestha", "ankita@gmail.com", passwordEncoder.encode("123"), "98zzzzzzzz", "Pulchowk, Lalitpur")
             );
             List<Customer> savedCustomers = userRepository.saveAll(customers);
 
